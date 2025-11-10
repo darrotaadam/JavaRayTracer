@@ -3,10 +3,12 @@ package RayTracer;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import javax.imageio.ImageIO;
+
 
 
 public class Main{
@@ -30,8 +32,14 @@ public class Main{
 		ImageComparator comparateur = new ImageComparator();
 		int differentPixels = comparateur.getDifferentPixels(img1, img2);
         
-        
+        System.out.println("Nombre de pixels différents : " + differentPixels);
 		
+        
+        BufferedImage imageDifferentielle = comparateur.imageDifferencielle(img1, img2);
+        
+        String savedImage = saveImage(imageDifferentielle, "/home/ad/imageDifferentielle.png");
+        
+        if (savedImage != null) System.out.println("Image différentielle créée à " + savedImage);
 	}
 	
 	
@@ -49,5 +57,16 @@ public class Main{
 	}
 	
 	
-	
+	private static String saveImage(BufferedImage image, String filePath) {
+		Path outPath = Paths.get(filePath);
+		try( OutputStream stream = Files.newOutputStream(outPath) ){
+			ImageIO.write(image, "png", stream);
+			return filePath;
+		}catch(IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
 }
