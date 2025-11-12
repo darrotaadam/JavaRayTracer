@@ -1,4 +1,4 @@
-package RayTracer;
+package ImageComparator;
 
 import java.awt.image.BufferedImage;
 
@@ -45,18 +45,17 @@ public class ImageComparator {
 		
 		for (int x=0; x<minWidth ; x++) {
 			for (int y=0; y<minHeight ; y++) {
-				//if( image1.getRGB(x, y) != image2.getRGB(x, y)
 				imageDifferentielle.setRGB(x, y, image1.getRGB(x, y)-image2.getRGB(x, y));
 			}
 		}
 		
 		
+		// étend aux dimensions de l'image la plus grande
 		 for (int y = minHeight; y < maxHeight; y++) {
 		        for (int x = 0; x < maxWidth; x++) {
 		        	imageDifferentielle.setRGB(x, y, -1);
 		        }
 		    }
-		
 		 for (int y = 0; y < minHeight; y++) {
 		        for (int x = minWidth; x < maxWidth; x++) {
 		        	imageDifferentielle.setRGB(x, y, -1);
