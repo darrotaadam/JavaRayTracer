@@ -27,8 +27,10 @@ public class Color {
 	}
 	
 	
-	public void schurProduct(Color operand) {
-		
+	public void schurProduct(Color colorSchurProduct) {
+		this.r = Math.min(this.r + colorSchurProduct.r, 1.0);
+		this.g = Math.min(this.g + colorSchurProduct.g, 1.0);
+		this.b = Math.min(this.b + colorSchurProduct.b, 1.0);
 	}
 	
 	
