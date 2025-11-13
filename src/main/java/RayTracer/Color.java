@@ -6,6 +6,13 @@ public class Color {
 	private double g;
 	private double b;
 	
+	
+	public Color() {
+		this.r = 0.0;
+		this.g = 0.0;
+		this.b = 0.0;
+	}
+	
 	public Color(double r, double g, double b) {
 		this.r = r;
 		this.g = g;
@@ -19,7 +26,7 @@ public class Color {
 		this.g = Math.min(this.g + colorToAdd.g, 1.0);
 		this.b = Math.min(this.b + colorToAdd.b, 1.0);
 	}
-	
+	s
 	public void multiply(double scalar) {
 		this.r = Math.min(this.r * scalar, 1.0);
 		this.g = Math.min(this.g * scalar, 1.0);
