@@ -158,6 +158,4 @@ public class VectorTest {
 		.isCloseTo(0.01989680, offset(0.01));
 	}
 	
-	
-	
 }
