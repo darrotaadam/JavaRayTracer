@@ -90,7 +90,7 @@ public class Vector {
 	
 	}
 	
-	public Vector norm() {
+	public Vector normalisation() {
 		double vecLen = this.length();
 		double newX = this.x / vecLen;
 		double newY = this.y / vecLen;
