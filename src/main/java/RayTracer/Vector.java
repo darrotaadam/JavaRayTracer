@@ -1,48 +1,20 @@
 package RayTracer;
 
-public class Vector {
+public class Vector extends AbstractVec3{
 
-	private double x;
-	private double y;
-	private double z;
-	
 	/* Constructors */
-	public Vector() {
-		this.x = 0;
-		this.y = 0;
-		this.z = 0;
-	}
-	public Vector(double x) {
-		this.x = x;
-		this.y = 0;
-		this.z = 0;
-	}
-	public Vector(double x, double y) {
-		this.x = x;
-		this.y = y;
-		this.z = 0;
-	}
-	public Vector(double x, double y, double z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
+	public Vector() 							{		super(0,0,0);	}
+	public Vector(double x) 					{		super(x,0,0);	}
+	public Vector(double x, double y) 			{		super(x,y,0);	}
+	public Vector(double x, double y, double z) {		super(x,y,z);	}
 
-	/* Setters & Getters */
-	public double getX() {
-		return x;
-	}
+	/* Setters */
+
 	public void setX(double x) {
 		this.x = x;
 	}
-	public double getY() {
-		return y;
-	}
 	public void setY(double y) {
 		this.y = y;
-	}
-	public double getZ() {
-		return z;
 	}
 	public void setZ(double z) {
 		this.z = z;
@@ -54,6 +26,13 @@ public class Vector {
 		double newY = this.y + vectorToAdd.y;
 		double newZ = this.z + vectorToAdd.z;
 		return new Vector(newX, newY, newZ);
+	}
+	
+	public Point add(Point pointToAdd) {
+		double newX = this.x + pointToAdd.x;
+		double newY = this.y + pointToAdd.y;
+		double newZ = this.z + pointToAdd.z;
+		return new Point(newX, newY, newZ);
 	}
 	
 	public Vector sub(Vector vectorToSubstract) {

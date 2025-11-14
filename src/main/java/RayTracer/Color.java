@@ -1,5 +1,6 @@
 package RayTracer;
 
+import java.util.Objects;
 
 public class Color {
 	private double r;
@@ -87,5 +88,26 @@ public class Color {
 		return Math.max(0.0, Math.min(x, 1.0));
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj)
+			return true;
 		
+		if(obj == null || getClass() != obj.getClass() )
+			return false;
+		
+		AbstractVec3 other = (AbstractVec3) obj;
+		
+		return Double.compare(r, other.x) == 0 &&
+		           Double.compare(g, other.y) == 0 &&
+		           Double.compare(b, other.z) == 0;
+		
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(r, g, b);
+	}	
+	
+	
 }

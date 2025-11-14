@@ -8,18 +8,37 @@ public class VectorTest {
 	@Test
 	void testAdd() {
 		Vector vec1 = new Vector(10, 26, 30);
-		Vector vec2 = new Vector(43, -26, 1);
-		Vector sum = vec1.add(vec2);
 		
-		assertThat(sum.getX())
+		/* Addition Vector + Vector */
+		Vector vec2 = new Vector(43, -26, 1);
+		Vector VectorVectorsum = vec1.add(vec2);
+		
+		assertThat(VectorVectorsum.getX())
 		.as("La somme de 10 et 43 est 53.")
 		.isEqualTo(53.0);
-		assertThat(sum.getY())
+		assertThat(VectorVectorsum.getY())
 		.as("La somme de 26 et -26 est 0.")
 		.isEqualTo(0.0);
-		assertThat(sum.getZ())
+		assertThat(VectorVectorsum.getZ())
 		.as("La somme de 30 et 1 est 31.")
 		.isEqualTo(31.0);
+		
+		/* Addition Vector + Point */
+		Point point = new Point(43, -26, 1);
+		Point VectorPointsum = vec1.add(point);
+		
+		assertThat(VectorPointsum.getX())
+		.as("La somme de 10 et 43 est 53.")
+		.isEqualTo(53.0);
+		assertThat(VectorPointsum.getY())
+		.as("La somme de 26 et -26 est 0.")
+		.isEqualTo(0.0);
+		assertThat(VectorPointsum.getZ())
+		.as("La somme de 30 et 1 est 31.")
+		.isEqualTo(31.0);
+		assertThat(VectorPointsum)
+		.as("L'addition d'un Vector et d'un Point est un Point")
+		.isInstanceOf(Point.class);
 	}
 	
 	@Test
