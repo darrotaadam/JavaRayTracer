@@ -6,6 +6,12 @@ public class Vector {
 	private double y;
 	private double z;
 	
+	/* Constructors */
+	public Vector() {
+		this.x = 0;
+		this.y = 0;
+		this.z = 0;
+	}
 	public Vector(double x) {
 		this.x = x;
 		this.y = 0;
@@ -22,6 +28,7 @@ public class Vector {
 		this.z = z;
 	}
 
+	/* Setters & Getters */
 	public double getX() {
 		return x;
 	}
@@ -41,9 +48,8 @@ public class Vector {
 		this.z = z;
 	}
 	
-	
+	/* Operations */
 	public Vector add(Vector vectorToAdd) {
-		
 		double newX = this.x + vectorToAdd.x;
 		double newY = this.y + vectorToAdd.y;
 		double newZ = this.z + vectorToAdd.z;
@@ -96,8 +102,6 @@ public class Vector {
 		double newY = this.y / vecLen;
 		double newZ = this.z / vecLen;
 		return new Vector(newX, newY, newZ);
-		
-		
 	}
 	
 	

@@ -6,38 +6,69 @@ public class Color {
 	private double g;
 	private double b;
 	
-	
+	/* Constructors */
 	public Color() {
 		this.r = 0.0;
 		this.g = 0.0;
 		this.b = 0.0;
 	}
-	
+	public Color(double r) {
+		this.r = clamp01(r);
+		this.g = 0.0;
+		this.b = 0.0;
+	}
+	public Color(double r, double g) {
+		this.r =  clamp01(r);
+		this.g =  clamp01(g);
+		this.b = 0.0;
+	}
 	public Color(double r, double g, double b) {
-		this.r = r;
-		this.g = g;
-		this.b = b;
+		this.r =  clamp01(r);
+		this.g =  clamp01(g);
+		this.b =  clamp01(b);
+	}
+	
+	/* Setters & Getters */
+	public double getR() {
+		return r;
+	}
+	public void setR(double r) {
+		this.r = clamp01(r);
+	}
+	public double getG() {
+		return g;
+	}
+	public void setG(double g) {
+		this.g = clamp01(g);
+	}
+	public double getB() {
+		return b;
+	}
+	public void setB(double b) {
+		this.b = clamp01(b);
+	}
+	
+	/* Operations */
+	public Color add(Color colorToAdd) {
+		double newR = clamp01(this.r + colorToAdd.r);
+		double newG = clamp01(this.g + colorToAdd.g);
+		double newB = clamp01(this.b + colorToAdd.b);
+		return new Color(newR, newG, newB);
+	}
+	
+	public Color multiply(double scalar) {
+		double newR = clamp01(this.r * scalar);
+		double newG = clamp01(this.g * scalar);
+		double newB = clamp01(this.b * scalar);
+		return new Color(newR, newG, newB);
 	}
 	
 	
-	
-	public void add(Color colorToAdd) {
-		this.r = Math.min(this.r + colorToAdd.r, 1.0);
-		this.g = Math.min(this.g + colorToAdd.g, 1.0);
-		this.b = Math.min(this.b + colorToAdd.b, 1.0);
-	}
-	
-	public void multiply(double scalar) {
-		this.r = Math.min(this.r * scalar, 1.0);
-		this.g = Math.min(this.g * scalar, 1.0);
-		this.b = Math.min(this.b * scalar, 1.0);
-	}
-	
-	
-	public void schurProduct(Color colorSchurProduct) {
-		this.r = Math.min(this.r + colorSchurProduct.r, 1.0);
-		this.g = Math.min(this.g + colorSchurProduct.g, 1.0);
-		this.b = Math.min(this.b + colorSchurProduct.b, 1.0);
+	public Color schurProduct(Color colorSchurProduct) {
+		double newR = clamp01(this.r * colorSchurProduct.r);
+		double newG= clamp01(this.g * colorSchurProduct.g);
+		double newB = clamp01(this.b * colorSchurProduct.b);
+		return new Color(newR, newG, newB);
 	}
 	
 	
@@ -47,10 +78,13 @@ public class Color {
 		int green = (int) Math.round(g*255);
 		int blue = (int) Math.round(b*255);
 		
-		return (  (red & 0xff) << 16
-				+ (green & 0xff) << 8
-				+ (blue & 0xff)
-		);
+		return ((red & 0xff) << 16)
+				+ ((green & 0xff) << 8)
+				+ (blue & 0xff);
+	}
+	
+	private double clamp01(double x) {
+		return Math.max(0.0, Math.min(x, 1.0));
 	}
 	
 		
