@@ -3,6 +3,7 @@ package RayTracer.imaging;
 import java.util.Objects;
 
 import RayTracer.geometry.AbstractVec3;
+import RayTracer.geometry.Point;
 
 
 public class Color {
@@ -31,6 +32,12 @@ public class Color {
 		this.g =  clamp01(g);
 		this.b =  clamp01(b);
 	}
+	public Color(Color toCopy) {
+		 this.r = toCopy.r;
+		 this.g = toCopy.g;
+		 this.b = toCopy.b;
+	}
+	
 	
 	/* Setters & Getters */
 	public double getR() {
