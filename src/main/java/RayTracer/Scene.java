@@ -1,13 +1,41 @@
 package RayTracer;
 
-public class Scene {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-	private SceneFileParser parser;
+import RayTracer.imaging.Color;
+
+public class Scene {
+	
+	private int width;
+	private int height;
+	private Camera camera;
+	private String output = "output.png";
+	private Color ambient = new Color();
+	private List<Light> lights = new ArrayList<>();
+	private List<Shape> shapes = new ArrayList<>();
 	
 	
 	public Scene(String fileName) {
-		parser = new SceneFileParser(fileName);
-		
+		importSceneFile(fileName);	// va définir les valeurs des attributs
+			
+	}
+	
+	
+	
+	
+	
+	private void importSceneFile(String fileName) {
+		try {
+			SceneFileParser parser = new SceneFileParser(fileName);
+			parser.getCamera();
+		}catch(IOException e) {
+			System.out.println(e);
+			System.out.println("[x] Exiting.");
+			System.exit(1);
+		}
 		
 	}
+	
 }

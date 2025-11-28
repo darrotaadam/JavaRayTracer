@@ -1,4 +1,4 @@
-package RayTracer;
+package RayTracer.geometry;
 
 public class Vector extends AbstractVec3{
 

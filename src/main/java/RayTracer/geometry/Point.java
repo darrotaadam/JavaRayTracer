@@ -1,4 +1,4 @@
-package RayTracer;
+package RayTracer.geometry;
 
 public class Point extends AbstractVec3{
 
@@ -7,7 +7,16 @@ public class Point extends AbstractVec3{
 	public Point(double x) 					{		super(x,0,0);	}
 	public Point(double x, double y) 			{		super(x,y,0);	}
 	public Point(double x, double y, double z) {		super(x,y,z);	}
-
+	
+	
+	
+	public Point(Point toCopy) {
+		 this.x = toCopy.x;
+		 this.y = toCopy.y;
+		 this.z = toCopy.z;
+	}
+	
+	
 	/* Setters */
 	public void setX(double x) {
 		this.x = x;

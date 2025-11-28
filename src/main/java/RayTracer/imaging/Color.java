@@ -1,6 +1,9 @@
-package RayTracer;
+package RayTracer.imaging;
 
 import java.util.Objects;
+
+import RayTracer.geometry.AbstractVec3;
+
 
 public class Color {
 	private double r;
@@ -98,9 +101,9 @@ public class Color {
 		
 		AbstractVec3 other = (AbstractVec3) obj;
 		
-		return Double.compare(r, other.x) == 0 &&
-		           Double.compare(g, other.y) == 0 &&
-		           Double.compare(b, other.z) == 0;
+		return Double.compare(r, other.getX()) == 0 &&
+		           Double.compare(g, other.getY()) == 0 &&
+		           Double.compare(b, other.getZ()) == 0;
 		
 	}
 	

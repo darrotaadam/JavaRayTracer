@@ -1,4 +1,4 @@
-package RayTracer;
+package RayTracer.geometry;
 
 import java.util.Objects;
 
