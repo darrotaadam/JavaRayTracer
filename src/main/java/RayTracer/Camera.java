@@ -12,6 +12,12 @@ public class Camera {
 	
 	public Camera() {
 	}
+	public Camera(Point position, Point looksAt, Vector upDirection, double fov) {
+		this.position = position;
+		this.looksAt = looksAt;
+		this.upDirection = upDirection;
+		this.fov = fov;
+	}
 	
 	public void setPosition(double x,double y,double z) {
 		this.position = new Point(x, y, z);
