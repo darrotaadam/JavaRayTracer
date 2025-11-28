@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import RayTracer.geometry.Point;
+import RayTracer.geometry.Vector;
+
 public class testPoint {
 	
 	@Test

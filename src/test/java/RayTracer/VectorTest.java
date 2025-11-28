@@ -3,6 +3,9 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.offset;
 import org.junit.jupiter.api.Test;
 
+import RayTracer.geometry.Point;
+import RayTracer.geometry.Vector;
+
 public class VectorTest {
 	
 	@Test

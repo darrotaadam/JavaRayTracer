@@ -24,9 +24,9 @@ public class SceneFileParser {
 
 	private ArrayList<String> fileContent;
 
-	private List<Light> lights;
+	private List<Light> lights = new ArrayList<Light>();
 	
-	private List<Shape> shapes;
+	private List<Shape> shapes = new ArrayList<Shape>();
 	
 	private Point[] vertexes;
 	
@@ -49,17 +49,41 @@ public class SceneFileParser {
 	public SceneFileParser(String fileName) throws IOException{
 		this.fileContent = openFile(fileName);
 		
-		this.shapes = new ArrayList<Shape>();
-		this.lights = new ArrayList<Light>();
-		
-		
 		extractAll();
 	}
 
 	
 	
-	
-	
+	public List<Light> getLights() {
+		return lights;
+	}
+
+	public List<Shape> getShapes() {
+		return shapes;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public Camera getCamera() {
+		return camera;
+	}
+
+	public Color getAmbient() {
+		return ambient;
+	}
+
+	public String getOutput() {
+		return output;
+	}
+
+
+
 	private ArrayList<String> openFile(String fileName) throws IOException {
 		
 		Path filePath = Paths.get(fileName);
@@ -70,6 +94,9 @@ public class SceneFileParser {
 			throw new IOException("Failed to open file : " + fileName) ;
 		}
 	}
+	
+	
+	
 	
 	
 	

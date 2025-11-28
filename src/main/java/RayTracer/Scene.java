@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import RayTracer.imaging.Color;
+import RayTracer.raytracer.Light;
+import RayTracer.geometry.Shape;
 
 public class Scene {
 	
@@ -22,14 +24,19 @@ public class Scene {
 			
 	}
 	
-	
-	
-	
+		
 	
 	private void importSceneFile(String fileName) {
 		try {
 			SceneFileParser parser = new SceneFileParser(fileName);
-			parser.getCamera();
+			this.height = parser.getHeight();
+			this.width = parser.getWidth();
+			this.camera = parser.getCamera();
+			this.output = parser.getOutput();
+			this.ambient = parser.getAmbient();
+			this.lights = parser.getLights();
+			this.shapes = parser.getShapes();
+			
 		}catch(IOException e) {
 			System.out.println(e);
 			System.out.println("[x] Exiting.");
