@@ -1,5 +1,7 @@
 package RayTracer.geometry;
 
+import java.util.Objects;
+
 public class Vector extends AbstractVec3{
 
 	/* Constructors */
@@ -7,7 +9,12 @@ public class Vector extends AbstractVec3{
 	public Vector(double x) 					{		super(x,0,0);	}
 	public Vector(double x, double y) 			{		super(x,y,0);	}
 	public Vector(double x, double y, double z) {		super(x,y,z);	}
-
+	
+	/* Getters */
+	public double getX() {		return this.x;	}
+	public double getY() {		return this.y;	}
+	public double getZ() {		return this.z;	}
+	
 	/* Setters */
 
 	public void setX(double x) {
@@ -83,6 +90,28 @@ public class Vector extends AbstractVec3{
 		return new Vector(newX, newY, newZ);
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj)
+			return true;
+		
+		if(obj == null || !( obj instanceof Vector ))
+			return false;
+		
+		
+		// obj est forcément un Vector
+		Vector otherV = (Vector) obj;
+		
+		return Double.compare(this.x, otherV.x) == 0 &&
+		           Double.compare(this.y, otherV.y) == 0 &&
+		           Double.compare(this.z, otherV.z) == 0;
+		
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(x, y, z);
+	}
 	
 	
 	

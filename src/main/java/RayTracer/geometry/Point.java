@@ -1,5 +1,7 @@
 package RayTracer.geometry;
 
+import java.util.Objects;
+
 public class Point extends AbstractVec3{
 
 	/* Constructors */
@@ -15,6 +17,11 @@ public class Point extends AbstractVec3{
 		 this.y = toCopy.y;
 		 this.z = toCopy.z;
 	}
+	
+	/* Getters */
+	public double getX() {		return this.x;	}
+	public double getY() {		return this.y;	}
+	public double getZ() {		return this.z;	}
 	
 	
 	/* Setters */
@@ -43,5 +50,33 @@ public class Point extends AbstractVec3{
 		double newZ = this.z * scalar;
 		return new Point(newX, newY, newZ);
 	}
+	
+	
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj)
+			return true;
+		
+		if(obj == null || !( obj instanceof Point ))
+			return false;
+		
+		
+		// obj est forcément un Point
+		Point otherP = (Point) obj;
+		
+		return Double.compare(this.x, otherP.x) == 0 &&
+		           Double.compare(this.y, otherP.y) == 0 &&
+		           Double.compare(this.z, otherP.z) == 0;
+		
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(x, y, z);
+	}
+	
+	
 	
 }

@@ -58,4 +58,38 @@ public class testPoint {
 		.isEqualTo(-8.5);
 	}
 	
+	
+	@Test
+	void testEquals() {
+		Point point1 = new Point(1, 1, 1);
+		Point point1bis = point1;
+		Point point2 = new Point(43, -26, 1);
+		Point point3 = new Point(-1, -1, -1);
+		Point point4 = new Point(0, 0, 0);
+		Point point5 = new Point(1, 1, 1);
+		
+		assertThat(point1.equals(point1bis))
+		.as("les Point (1,1,1) et (1,1,1) sont sont  égaux")
+		.isEqualTo(true);
+		
+		assertThat(point1.equals(point2))
+		.as("les Point (1,1,1) et (43,-26,1) ne sont pas égaux")
+		.isEqualTo(false);
+
+		assertThat(point1.equals(point3))
+		.as("les Point (1,1,1) et (-1, -1, -1) ne sont pas égaux")
+		.isEqualTo(false);
+
+		assertThat(point1.equals(point4))
+		.as("les Point (1,1,1) et (0, 0, 0) ne sont pas égaux")
+		.isEqualTo(false);
+		
+		assertThat(point1.equals(point5))
+		.as("les Point (1,1,1) et (1, 1, 1) sont égaux")
+		.isEqualTo(true);
+	}
+	
+	
+	
+	
 }

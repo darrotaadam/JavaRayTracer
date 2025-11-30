@@ -1,8 +1,8 @@
 package RayTracer.geometry;
 
-import java.util.Objects;
 
-public class AbstractVec3 {
+
+public abstract class AbstractVec3 {
 	protected double x;
 	protected double y;
 	protected double z;
@@ -30,29 +30,14 @@ public class AbstractVec3 {
 	}
 
 	/* Getters */
-	public double getX() {		return this.x;	}
-	public double getY() {		return this.y;	}
-	public double getZ() {		return this.z;	}
+	public abstract double getX();
+	public abstract double getY();
+	public abstract double getZ();
 	
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj)
-			return true;
-		
-		if(obj == null || getClass() != obj.getClass() )
-			return false;
-		
-		AbstractVec3 other = (AbstractVec3) obj;
-		
-		return Double.compare(x, other.x) == 0 &&
-		           Double.compare(y, other.y) == 0 &&
-		           Double.compare(z, other.z) == 0;
-		
-	}
 	
-	@Override
-	public int hashCode() {
-		return Objects.hash(x, y, z);
-	}
+
+	public abstract boolean equals(Object obj);
+	public abstract int hashCode();
+	
 	
 }
