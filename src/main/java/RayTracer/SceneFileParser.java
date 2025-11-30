@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+
 
 import RayTracer.geometry.Plane;
 import RayTracer.geometry.Point;
@@ -167,7 +167,7 @@ public class SceneFileParser {
 			this.width = Integer.parseInt(sizeLine.split(" ")[1]);
 			this.height = Integer.parseInt(sizeLine.split(" ")[2]);
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut size : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut size : " + sizeLine + "\n" + e);
 		}	
 	}
 
@@ -175,7 +175,7 @@ public class SceneFileParser {
 		try {
 			this.output = sizeLine.split(" ")[1];
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut output : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut output : " + sizeLine + "\n" + e);
 		}	
 	}
 
@@ -201,7 +201,7 @@ public class SceneFileParser {
 			this.camera = new Camera(position, looksAt, direction, fov);
 			
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut Camera : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut Camera : " + sizeLine + "\n" + e);
 		}	
 	}
 	
@@ -214,7 +214,7 @@ public class SceneFileParser {
 					Double.parseDouble(sizeLine.split(" ")[3])
 					);
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut ambient : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut ambient : " + sizeLine + "\n" + e);
 		}	
 	}
 	
@@ -226,7 +226,7 @@ public class SceneFileParser {
 					Double.parseDouble(sizeLine.split(" ")[3])
 					);
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut diffuse : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut diffuse : " + sizeLine + "\n" + e);
 		}
 	}
 	private void setSpecular(String sizeLine) {
@@ -237,7 +237,7 @@ public class SceneFileParser {
 					Double.parseDouble(sizeLine.split(" ")[3])
 					);
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut specular : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut specular : " + sizeLine + "\n" + e);
 		}
 	}
 	
@@ -249,7 +249,7 @@ public class SceneFileParser {
 			this.maxverts = Integer.parseInt(sizeLine.split(" ")[1]);
 			this.vertexes = new Point[this.maxverts];
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut maxverts : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut maxverts : " + sizeLine + "\n" + e);
 		}
 	}
 	
@@ -272,7 +272,7 @@ public class SceneFileParser {
 				this.vertexes[vertIndex] = position;
 			}
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut vertex : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut vertex : " + sizeLine + "\n" + e);
 		}
 	}
 	
@@ -291,7 +291,7 @@ public class SceneFileParser {
 			
 			this.lights.add( new DirectionalLight( direction, couleur));
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut directional : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut directional : " + sizeLine + "\n" + e);
 		}
 	}
 	
@@ -309,7 +309,7 @@ public class SceneFileParser {
 			
 			this.lights.add( new PointLight( origin, couleur));
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut point : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut point : " + sizeLine + "\n" + e);
 		}
 	}
 	
@@ -346,7 +346,7 @@ public class SceneFileParser {
 			}
 			this.shapes.add(new Triangle(a, b, c, specular, diffuse));
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
 		}
 	}
 
@@ -372,7 +372,7 @@ public class SceneFileParser {
 			}
 			this.shapes.add(new Sphere(center, radius, specular, diffuse));
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
 		}
 	}
 	
@@ -402,7 +402,7 @@ public class SceneFileParser {
 			}
 			this.shapes.add(new Plane(position, normale, specular, diffuse));
 		}catch(Exception e) {
-			throw new NoSuchElementException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
 		}
 	}
 	

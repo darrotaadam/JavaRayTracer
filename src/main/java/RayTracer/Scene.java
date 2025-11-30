@@ -25,7 +25,31 @@ public class Scene {
 	}
 	
 		
-	
+	/* Getters */
+	public int getWidth() {
+		return width;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public Camera getCamera() {
+		return camera;
+	}
+	public String getOutput() {
+		return output;
+	}
+	public Color getAmbient() {
+		return ambient;
+	}
+	public List<Light> getLights() {
+		return lights;
+	}
+	public List<Shape> getShapes() {
+		return shapes;
+	}
+
+
+
 	private void importSceneFile(String fileName) {
 		try {
 			SceneFileParser parser = new SceneFileParser(fileName);
@@ -44,5 +68,14 @@ public class Scene {
 		}
 		
 	}
+
+	
+	public void printSummary() {
+		System.out.println("[*] Scene id " + this.hashCode());
+		System.out.println("[*] Size " + this.getWidth() + "x" + this.getHeight());
+	}
+	
+
+	
 	
 }
