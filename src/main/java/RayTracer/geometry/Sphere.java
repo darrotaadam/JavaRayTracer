@@ -1,6 +1,7 @@
 package RayTracer.geometry;
 
 import RayTracer.imaging.Color;
+import RayTracer.raytracer.Ray;
 
 public class Sphere implements Shape{
 
@@ -21,4 +22,20 @@ public class Sphere implements Shape{
 		this.specular = specular;
 		this.diffuse = diffuse;
 	}
+	
+	
+	
+	@Override
+	public Intersection intersect(Ray rayon) {
+		
+		double a = rayon.getDirection().produitScalaire(rayon.getDirection());
+		
+		
+		return null;
+	}
+	
+	
+	
+	
+	
 }

@@ -3,9 +3,12 @@ package RayTracer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import RayTracer.imaging.Color;
 import RayTracer.raytracer.Light;
+import RayTracer.raytracer.Ray;
+import RayTracer.geometry.Intersection;
 import RayTracer.geometry.Shape;
 
 public class Scene {
@@ -76,6 +79,16 @@ public class Scene {
 	}
 	
 
+	
+	public Optional<Intersection> findClosestIntersection(Ray rayon){
+		Intersection foundIntersection;
+		for(int i=0; i<this.shapes.size(); i++) {
+			foundIntersection = shapes.get(i).intersect(rayon);
+		}
+		
+	}
+	
+	
 	
 	
 }
