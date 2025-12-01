@@ -1,6 +1,9 @@
 package RayTracer.geometry;
 
+import java.util.Optional;
+
 import RayTracer.imaging.Color;
+import RayTracer.raytracer.Ray;
 
 public class Plane implements Shape{
 
@@ -15,6 +18,10 @@ public class Plane implements Shape{
 		this.position = position;
 		this.specular = specular;
 		this.diffuse = diffuse;
+	}
+
+	public Optional<Intersection> intersect(Ray rayon) {
+		return Optional.empty() ;
 	}
 	
 }

@@ -8,9 +8,9 @@ public class Intersection {
 	private Shape shape;
 	
 	
-	public Intersection(Point position) {
-		this.position = position;
-		pafini
+	public Intersection(double distance) {
+		this.distance = distance;
+		//pafini 
 	}
 	
 }

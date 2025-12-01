@@ -1,10 +1,12 @@
 package RayTracer.geometry;
 
+import java.util.Optional;
+
 import RayTracer.raytracer.Ray;
 
 public interface Shape {
 
-	Intersection intersect(Ray rayon);
+	Optional<Intersection> intersect(Ray rayon);
 	
 	
 }
