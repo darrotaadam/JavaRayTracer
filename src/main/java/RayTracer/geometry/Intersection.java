@@ -13,4 +13,9 @@ public class Intersection {
 		//pafini 
 	}
 	
+	public double getDistance() {
+		return this.distance;
+	}
+	
+	
 }

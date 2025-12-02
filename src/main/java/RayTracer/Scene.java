@@ -24,7 +24,10 @@ public class Scene {
 	
 	public Scene(String fileName) {
 		importSceneFile(fileName);	// va définir les valeurs des attributs
-			
+		
+		
+		
+		
 	}
 	
 		
@@ -52,6 +55,11 @@ public class Scene {
 	}
 
 
+	public void printSummary() {
+		System.out.println("[*] Scene id " + this.hashCode());
+		System.out.println("[*] Size " + this.getWidth() + "x" + this.getHeight());
+	}
+	
 
 	private void importSceneFile(String fileName) {
 		try {
@@ -73,19 +81,22 @@ public class Scene {
 	}
 
 	
-	public void printSummary() {
-		System.out.println("[*] Scene id " + this.hashCode());
-		System.out.println("[*] Size " + this.getWidth() + "x" + this.getHeight());
-	}
-	
+
 
 	
+	
+	
 	public Optional<Intersection> findClosestIntersection(Ray rayon){
-		Intersection foundIntersection;
+		Optional<Intersection> closestIntersection = Optional.empty();
+		Optional<Intersection> intersection = Optional.empty();
 		for(int i=0; i<this.shapes.size(); i++) {
-			foundIntersection = shapes.get(i).intersect(rayon);
+			intersection = shapes.get(i).intersect(rayon);
+			if( !closestIntersection.isPresent() )
+				closestIntersection = intersection;
+			else if(intersection.get().getDistance() < closestIntersection.get().getDistance())
+				closestIntersection = intersection;
 		}
-		
+		return closestIntersection;
 	}
 	
 	

@@ -48,4 +48,19 @@ public class Camera {
 	}
 	
 	
+	public Point getPosition() {
+		return position;
+	}
+	public Point getLooksAt() {
+		return looksAt;
+	}
+	public Vector getUpDirection() {
+		return upDirection;
+	}
+	public double getFov() {
+		return fov;
+	}
+	
+	
+	
 }

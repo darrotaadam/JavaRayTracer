@@ -23,6 +23,21 @@ public class Orthonormal {
 	private Vector calculateV(Vector u, Vector w) {
 		return w.produitVectoriel(u).normalisation();
 	}
+
+
+	public Vector getU() {
+		return u;
+	}
+
+
+	public Vector getV() {
+		return v;
+	}
+
+
+	public Vector getW() {
+		return w;
+	}
 		
 		
 
