@@ -1,5 +1,7 @@
 package RayTracer.geometry;
 
+import RayTracer.imaging.Color;
+
 public class Intersection {
 
 	private double distance;
@@ -17,5 +19,10 @@ public class Intersection {
 		return this.distance;
 	}
 	
+	
+	/*
+	public Color diffusionLambert() {
+		
+	}*/
 	
 }
