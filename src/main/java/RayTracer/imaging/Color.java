@@ -41,19 +41,19 @@ public class Color {
 	
 	/* Setters & Getters */
 	public double getR() {
-		return r;
+		return this.r;
 	}
 	public void setR(double r) {
 		this.r = clamp01(r);
 	}
 	public double getG() {
-		return g;
+		return this.g;
 	}
 	public void setG(double g) {
 		this.g = clamp01(g);
 	}
 	public double getB() {
-		return b;
+		return this.b;
 	}
 	public void setB(double b) {
 		this.b = clamp01(b);

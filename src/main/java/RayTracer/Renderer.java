@@ -23,24 +23,23 @@ public class Renderer {
 	
 	
 	public BufferedImage render() {
-		BufferedImage renderedImage = new BufferedImage(scene.getHeight(), scene.getWidth(), BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage renderedImage = new BufferedImage(scene.getWidth(), scene.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
 		
 		RayTracer rayTracer = new RayTracer(scene);
-		
-		for(int i=0; i<scene.getHeight(); i++) {
-			for(int j=0; j<scene.getWidth(); j++) {
-				renderedImage.setRGB(i, j, rayTracer.getPixelColor(i, j).toRGB() );
+		int flippedY;
+		int i,j;
+		for(i=0; i<scene.getWidth(); i++) {
+			for(j=0; j<scene.getHeight(); j++) {
+				flippedY = scene.getHeight() - 1 - j;
+				renderedImage.setRGB(
+					i, 
+					j, 
+					rayTracer.getPixelColor(i, flippedY).toRGB() 
+				);
 			}
 		}
-		
-		return renderedImage;
-		
+		return renderedImage;	
 	}
 	
-	
-	
-	
-
-	
-	
 }
+ 

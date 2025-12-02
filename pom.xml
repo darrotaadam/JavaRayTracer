@@ -5,7 +5,7 @@
 
   <groupId>RayTracer</groupId>
   <artifactId>RayTracer</artifactId>
-  <version>Jalon1</version>
+  <version>Jalon3</version>
 
   <name>RayTracer</name>
   <!-- FIXME change it to the project's website -->
@@ -91,6 +91,10 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.6.1</version>
         </plugin>
+        <plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
       </plugins>
     </pluginManagement>
   </build>

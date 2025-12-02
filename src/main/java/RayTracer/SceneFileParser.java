@@ -38,8 +38,8 @@ public class SceneFileParser {
 	
 	private Color ambient;
 	
-	private Color lastDiffuse;	// vont changer pour chaque Shape
-	private Color lastSpecular;	
+	private Color lastDiffuse = new Color();	// vont changer pour chaque Shape
+	private Color lastSpecular = new Color();	
 	
 	private int maxverts = -1;
 	
@@ -372,7 +372,7 @@ public class SceneFileParser {
 			}
 			this.shapes.add(new Sphere(center, radius, specular, diffuse));
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut sphere : " + sizeLine + "\n" + e);
 		}
 	}
 	

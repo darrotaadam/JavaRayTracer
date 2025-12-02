@@ -91,10 +91,16 @@ public class Scene {
 		Optional<Intersection> intersection = Optional.empty();
 		for(int i=0; i<this.shapes.size(); i++) {
 			intersection = shapes.get(i).intersect(rayon);
-			if( !closestIntersection.isPresent() )
+			if(intersection.isEmpty()) {
+				continue;
+			}
+			
+			if( closestIntersection.isEmpty() ) {
 				closestIntersection = intersection;
-			else if(intersection.get().getDistance() < closestIntersection.get().getDistance())
+			}
+			else if(intersection.get().getDistance() < closestIntersection.get().getDistance()) {
 				closestIntersection = intersection;
+			}
 		}
 		return closestIntersection;
 	}

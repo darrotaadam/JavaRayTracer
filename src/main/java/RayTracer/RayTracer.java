@@ -46,10 +46,10 @@ public class RayTracer {
 	}
 	
 	private Pixel getPixelSize(double fov, int imgWidth, int imgHeight) {
-		double fovRadient = fov * Math.PI / 180d;
+		double fovRadient = (fov * Math.PI) / 180;
 		double pixelHeight = Math.tan(fovRadient/2);
-		double pixelWidth = pixelHeight * (imgWidth / imgHeight);
-		return new Pixel(pixelHeight, pixelWidth);
+		double pixelWidth = pixelHeight * ((double)imgWidth / imgHeight);
+		return new Pixel(pixelWidth, pixelHeight);
 	}
 	
 	
