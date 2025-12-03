@@ -3,6 +3,8 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.offset;
 import org.junit.jupiter.api.Test;
 
+import RayTracer.imaging.Color;
+
 
 public class ColorTest {
 	

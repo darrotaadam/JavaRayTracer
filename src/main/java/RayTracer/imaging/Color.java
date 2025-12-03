@@ -1,6 +1,10 @@
-package RayTracer;
+package RayTracer.imaging;
 
 import java.util.Objects;
+
+import RayTracer.geometry.AbstractVec3;
+import RayTracer.geometry.Point;
+
 
 public class Color {
 	private double r;
@@ -28,22 +32,28 @@ public class Color {
 		this.g =  clamp01(g);
 		this.b =  clamp01(b);
 	}
+	public Color(Color toCopy) {
+		 this.r = toCopy.r;
+		 this.g = toCopy.g;
+		 this.b = toCopy.b;
+	}
+	
 	
 	/* Setters & Getters */
 	public double getR() {
-		return r;
+		return this.r;
 	}
 	public void setR(double r) {
 		this.r = clamp01(r);
 	}
 	public double getG() {
-		return g;
+		return this.g;
 	}
 	public void setG(double g) {
 		this.g = clamp01(g);
 	}
 	public double getB() {
-		return b;
+		return this.b;
 	}
 	public void setB(double b) {
 		this.b = clamp01(b);
@@ -98,9 +108,9 @@ public class Color {
 		
 		AbstractVec3 other = (AbstractVec3) obj;
 		
-		return Double.compare(r, other.x) == 0 &&
-		           Double.compare(g, other.y) == 0 &&
-		           Double.compare(b, other.z) == 0;
+		return Double.compare(r, other.getX()) == 0 &&
+		           Double.compare(g, other.getY()) == 0 &&
+		           Double.compare(b, other.getZ()) == 0;
 		
 	}
 	

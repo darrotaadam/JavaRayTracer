@@ -1,0 +1,45 @@
+package RayTracer;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import javax.imageio.ImageIO;
+
+import RayTracer.imaging.Color;
+
+public class Renderer {
+
+	private Scene scene;
+	
+	
+	
+	public Renderer(Scene scene) {
+		this.scene = scene;
+	}
+	
+	
+	public BufferedImage render() {
+		BufferedImage renderedImage = new BufferedImage(scene.getWidth(), scene.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+		
+		RayTracer rayTracer = new RayTracer(scene);
+		int flippedY;
+		int i,j;
+		for(i=0; i<scene.getWidth(); i++) {
+			for(j=0; j<scene.getHeight(); j++) {
+				flippedY = scene.getHeight() - 1 - j;
+				renderedImage.setRGB(
+					i, 
+					j, 
+					rayTracer.getPixelColor(i, flippedY).toRGB() 
+				);
+			}
+		}
+		return renderedImage;	
+	}
+	
+}
+ 

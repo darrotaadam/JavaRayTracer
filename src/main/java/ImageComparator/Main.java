@@ -16,8 +16,8 @@ public class Main{
 	
 	public static void main(String[] args) {
 		if(args.length != 3){    
-            System.out.println("[!] Paramètres: fichier1.png fichier2.png fichier_export.png");
-            throw new IllegalArgumentException("Incorrect count of parameters");
+			System.out.println("[!] Paramètres: fichier1.png fichier2.png fichier_export.png");
+            throw new IllegalArgumentException("Incorrect count of parameters, received "+ args.length);
         }
 		
 		BufferedImage img1 = openImage(args[0]);

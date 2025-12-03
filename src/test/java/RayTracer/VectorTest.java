@@ -3,6 +3,9 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.offset;
 import org.junit.jupiter.api.Test;
 
+import RayTracer.geometry.Point;
+import RayTracer.geometry.Vector;
+
 public class VectorTest {
 	
 	@Test
@@ -176,5 +179,41 @@ public class VectorTest {
 		.as("norm1.z ~= 0.01989680")
 		.isCloseTo(0.01989680, offset(0.01));
 	}
+	
+	@Test
+	void testEquals() {
+		Vector vec1 = new Vector(1, 1, 1);
+		Vector vec1bis = vec1;
+		Vector vec2 = new Vector(43, -26, 1);
+		Vector vec3 = new Vector(-1, -1, -1);
+		Vector vec4 = new Vector(0, 0, 0);
+		Vector vec5 = new Vector(1, 1, 1);
+		
+		assertThat(vec1.equals(vec1bis))
+		.as("les Vector (1,1,1) et (1,1,1) sont sont égaux")
+		.isEqualTo(true);
+		
+		assertThat(vec1.equals(vec2))
+		.as("les Vector (1,1,1) et (43,-26,1) ne sont pas égaux")
+		.isEqualTo(false);
+
+		assertThat(vec1.equals(vec3))
+		.as("les Vector (1,1,1) et (-1, -1, -1) ne sont pas égaux")
+		.isEqualTo(false);
+
+		assertThat(vec1.equals(vec4))
+		.as("les Vector (1,1,1) et (0, 0, 0) ne sont pas égaux")
+		.isEqualTo(false);
+		
+		assertThat(vec1.equals(vec5))
+		.as("les Vector (1,1,1) et (1, 1, 1) sont égaux")
+		.isEqualTo(true);
+	}
+	
+	
+	
+	
+	
+	
 	
 }
