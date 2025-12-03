@@ -14,6 +14,14 @@ public class Triangle implements Shape{
 	private Color specular;
 	private Color diffuse;
 	
+	
+	public Color getSpecular() {
+		return specular;
+	}
+	public Color getDiffuse() {
+		return diffuse;
+	}
+	
 	public Triangle(Point a, Point b, Point c, Color specular, Color diffuse) {
 		this.a = a;
 		this.b = b;
@@ -26,5 +34,7 @@ public class Triangle implements Shape{
 	public Optional<Intersection> intersect(Ray rayon) {
 		return Optional.empty() ;
 	}
+
 	
+
 }

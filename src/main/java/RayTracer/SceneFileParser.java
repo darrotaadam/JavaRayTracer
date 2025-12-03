@@ -36,7 +36,7 @@ public class SceneFileParser {
 	
 	private Camera camera;
 	
-	private Color ambient;
+	private Color ambient = new Color();
 	
 	private Color lastDiffuse = new Color();	// vont changer pour chaque Shape
 	private Color lastSpecular = new Color();	

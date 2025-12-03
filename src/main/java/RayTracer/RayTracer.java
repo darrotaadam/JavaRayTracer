@@ -30,7 +30,8 @@ public class RayTracer {
 		
 		Optional<Intersection> p = scene.findClosestIntersection(ray);
 		if( p.isPresent()) {
-			return scene.getAmbient();
+			return p.get().getColor();
+			//return scene.getAmbient();
 		}
 		else {
 			return new Color();

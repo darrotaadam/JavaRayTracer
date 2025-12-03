@@ -12,6 +12,15 @@ public class Sphere implements Shape{
 	private Color specular;
 	private Color diffuse;
 	
+	
+	public Color getSpecular() {
+		return specular;
+	}
+	public Color getDiffuse() {
+		return diffuse;
+	}
+	
+	
 	public Sphere(double x, double y, double z, double radius, Color specular, Color diffuse) {
 		this.center = new Point(x, y, z);
 		this.radius= radius;
@@ -36,13 +45,17 @@ public class Sphere implements Shape{
 							.produitScalaire(rayon.getOrigin().sub(this.center)) 
 							-(this.radius * this.radius);
 		double delta = (b*b) - 4 * a * c;
-		
+		Point position;
+		Vector normale;
 		
 		if(delta < 0d) {
 			return Optional.empty();
 		}
 		if(delta == 0d) {
-			return Optional.of(new Intersection(-b / (2*a)));
+			double t = -b / (2*a);
+			position = rayon.getDirection().multByScalar(t).add(rayon.getOrigin());
+			normale = (position.sub(this.center)).normalisation();
+			return Optional.of(new Intersection(t, position, normale, this));
 		}
 		if(delta >0d) {
 			double sqrtDelta = Math.sqrt(delta);
@@ -50,17 +63,22 @@ public class Sphere implements Shape{
 			double t2 = (-b - sqrtDelta) / (2 *a);
 			
 			if(t2 > 0d) {
-				return Optional.of(new Intersection(t2));
+				position = rayon.getDirection().multByScalar(t2).add(rayon.getOrigin());
+				normale = (position.sub(this.center)).normalisation();
+				return Optional.of(new Intersection(t2, position, normale, this));
 			}
 			else if(t1 > 0d) {
-				return Optional.of(new Intersection(t1));
+				position = rayon.getDirection().multByScalar(t1).add(rayon.getOrigin());
+				normale = (position.sub(this.center)).normalisation();
+				return Optional.of(new Intersection(t1, position, normale, this));
 			}
-			else {
-				return Optional.empty();
-			}
+			
 		}
 		return Optional.empty() ;
 	}
+	
+	
+	
 	
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import RayTracer.imaging.Color;
+import RayTracer.raytracer.DirectionalLight;
 import RayTracer.raytracer.Light;
 import RayTracer.raytracer.Ray;
 import RayTracer.geometry.Intersection;
@@ -17,16 +18,13 @@ public class Scene {
 	private int height;
 	private Camera camera;
 	private String output = "output.png";
-	private Color ambient = new Color();
+	private Color ambient ;
 	private List<Light> lights = new ArrayList<>();
 	private List<Shape> shapes = new ArrayList<>();
 	
 	
 	public Scene(String fileName) {
 		importSceneFile(fileName);	// va définir les valeurs des attributs
-		
-		
-		
 		
 	}
 	
@@ -101,6 +99,16 @@ public class Scene {
 			else if(intersection.get().getDistance() < closestIntersection.get().getDistance()) {
 				closestIntersection = intersection;
 			}
+		}
+		if (closestIntersection.isPresent()) {
+			Color couleurPoint = new Color(this.ambient);
+			for(int j=0; j<this.lights.size(); j++) {
+				
+				couleurPoint = couleurPoint.add(closestIntersection.get().computeDiffusionLambert(this.lights.get(j)));
+				
+			}
+			closestIntersection.get().setColor(couleurPoint);
+			
 		}
 		return closestIntersection;
 	}

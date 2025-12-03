@@ -13,13 +13,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		String GIT_ROOT_DIR = "/home/ad/Documents/Cours/POO/JavaRayTracer";
-		Scene test1 = new Scene(GIT_ROOT_DIR + "/TestScenes/jalon3/tp35.test");
+		Scene test1 = new Scene(GIT_ROOT_DIR + "/TestScenes/jalon4/tp45.test");
 	
 		Renderer renderer = new Renderer(test1);
 		
 		BufferedImage resultImage = renderer.render();
 	
-		saveImage(resultImage, "/home/ad/result.png");
+		saveImage(resultImage, GIT_ROOT_DIR + "/result.png");
 		
 		System.out.println("Image sauvegardée !");
 		
