@@ -1,9 +1,13 @@
 package RayTracer.geometry;
 
+import java.util.Optional;
+
+import RayTracer.Scene;
 import RayTracer.imaging.Color;
 import RayTracer.raytracer.DirectionalLight;
 import RayTracer.raytracer.Light;
 import RayTracer.raytracer.PointLight;
+import RayTracer.raytracer.Ray;
 
 
 public class Intersection {
@@ -56,6 +60,38 @@ public class Intersection {
 	        .schurProduct(light.getColor())
 	        .multiply(Math.max(0, this.normale.produitScalaire(lightDirection)));
 	}
+	
+	
+	
+	public boolean isShadowed(Light light, Scene scene) {
+		if (light instanceof DirectionalLight dirLight) {
+			return isShadowed(dirLight, scene);
+		}
+		else if (light instanceof PointLight pointLight) {
+			return isShadowed(pointLight, scene);
+		}
+		return false;
+	}
+	
+	private boolean isShadowed(DirectionalLight light,Scene scene) {
+		Vector directionToLight = light.getDirection().multByScalar(-1);
+		Ray shadowRay = new Ray(this.position, directionToLight);
+		Optional<Intersection> shadowSource = scene.findClosestIntersection(shadowRay);		
+		return shadowSource.isPresent();		
+	}
+	
+	private boolean isShadowed(PointLight light, Scene scene) {
+		Vector directionToLight = light.getOrigin().sub(this.position).normalisation().multByScalar(-1);
+		Ray shadowRay = new Ray(this.position, directionToLight);
+		Optional<Intersection> shadowSource = scene.findClosestIntersection(shadowRay);
+		return shadowSource.isPresent();
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

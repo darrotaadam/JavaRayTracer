@@ -21,6 +21,7 @@ public class Scene {
 	private Color ambient ;
 	private List<Light> lights = new ArrayList<>();
 	private List<Shape> shapes = new ArrayList<>();
+
 	
 	
 	public Scene(String fileName) {
@@ -86,25 +87,20 @@ public class Scene {
 	
 	public Optional<Intersection> findClosestIntersection(Ray rayon){
 		Optional<Intersection> closestIntersection = Optional.empty();
-		Optional<Intersection> intersection = Optional.empty();
 		for(int i=0; i<this.shapes.size(); i++) {
-			intersection = shapes.get(i).intersect(rayon);
-			if(intersection.isEmpty()) {
-				continue;
-			}
-			
-			if( closestIntersection.isEmpty() ) {
-				closestIntersection = intersection;
-			}
-			else if(intersection.get().getDistance() < closestIntersection.get().getDistance()) {
-				closestIntersection = intersection;
+			Optional<Intersection> intersection = shapes.get(i).intersect(rayon);
+			if(intersection.isPresent()) {
+				if( closestIntersection.isEmpty() 	 ||		intersection.get().getDistance() < closestIntersection.get().getDistance()) { 
+					closestIntersection = intersection;
+				}
 			}
 		}
+		
 		if (closestIntersection.isPresent()) {
 			Color couleurPoint = new Color(this.ambient);
 			for(int j=0; j<this.lights.size(); j++) {
-				
-				couleurPoint = couleurPoint.add(closestIntersection.get().computeDiffusionLambert(this.lights.get(j)));
+				if (! closestIntersection.get().isShadowed(this.lights.get(j), this))
+					couleurPoint = couleurPoint.add(closestIntersection.get().computeDiffusionLambert(this.lights.get(j)));
 				
 			}
 			closestIntersection.get().setColor(couleurPoint);

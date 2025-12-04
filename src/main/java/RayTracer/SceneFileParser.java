@@ -40,8 +40,10 @@ public class SceneFileParser {
 	
 	private Color lastDiffuse = new Color();	// vont changer pour chaque Shape
 	private Color lastSpecular = new Color();	
+	private Color lastShininess = new Color();
 	
 	private int maxverts = -1;
+	
 	
 	
 	
@@ -129,6 +131,9 @@ public class SceneFileParser {
 				case "specular":
 					setSpecular(currentLine);
 					break;
+				case "shininess":
+					setShininess(currentLine);
+					break;
 				// lumieres
 				case "directional":
 					setDirectionalLight(currentLine);
@@ -152,7 +157,7 @@ public class SceneFileParser {
 				case "plane":
 					addPlane(currentLine);
 					break;
-				
+					
 			}	
 			
 		}		
@@ -162,99 +167,110 @@ public class SceneFileParser {
 	
 	
 	
-	private void setSize(String sizeLine) {
+	private void setSize(String parsedLine) {
 		try {
-			this.width = Integer.parseInt(sizeLine.split(" ")[1]);
-			this.height = Integer.parseInt(sizeLine.split(" ")[2]);
+			this.width = Integer.parseInt(parsedLine.split(" ")[1]);
+			this.height = Integer.parseInt(parsedLine.split(" ")[2]);
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut size : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut size : " + parsedLine + "\n" + e);
 		}	
 	}
 
-	private void setOutput(String sizeLine) {
+	private void setOutput(String parsedLine) {
 		try {
-			this.output = sizeLine.split(" ")[1];
+			this.output = parsedLine.split(" ")[1];
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut output : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut output : " + parsedLine + "\n" + e);
 		}	
 	}
 
-	private void setCamera(String sizeLine) {
+	private void setCamera(String parsedLine) {
 		try {
 			Point position = new Point(
-					Double.parseDouble(sizeLine.split(" ")[1]),
-					Double.parseDouble(sizeLine.split(" ")[2]),
-					Double.parseDouble(sizeLine.split(" ")[3])
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3])
 					);
 			Point looksAt = new Point(
-					Double.parseDouble(sizeLine.split(" ")[4]),
-					Double.parseDouble(sizeLine.split(" ")[5]),
-					Double.parseDouble(sizeLine.split(" ")[6])
+					Double.parseDouble(parsedLine.split(" ")[4]),
+					Double.parseDouble(parsedLine.split(" ")[5]),
+					Double.parseDouble(parsedLine.split(" ")[6])
 					);
 			Vector direction = new Vector(
-					Double.parseDouble(sizeLine.split(" ")[7]),
-					Double.parseDouble(sizeLine.split(" ")[8]),
-					Double.parseDouble(sizeLine.split(" ")[9])
+					Double.parseDouble(parsedLine.split(" ")[7]),
+					Double.parseDouble(parsedLine.split(" ")[8]),
+					Double.parseDouble(parsedLine.split(" ")[9])
 					);
-			double fov = Double.parseDouble(sizeLine.split(" ")[10]);
+			double fov = Double.parseDouble(parsedLine.split(" ")[10]);
 			
 			this.camera = new Camera(position, looksAt, direction, fov);
 			
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut Camera : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut Camera : " + parsedLine + "\n" + e);
 		}	
 	}
 	
 	
-	private void setAmbient(String sizeLine) {
+	private void setAmbient(String parsedLine) {
 		try {
 			this.ambient = new Color(
-					Double.parseDouble(sizeLine.split(" ")[1]),
-					Double.parseDouble(sizeLine.split(" ")[2]),
-					Double.parseDouble(sizeLine.split(" ")[3])
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3])
 					);
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut ambient : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut ambient : " + parsedLine + "\n" + e);
 		}	
 	}
 	
-	private void setDiffuse(String sizeLine) {
+	private void setDiffuse(String parsedLine) {
 		try {
 			this.lastDiffuse = new Color(
-					Double.parseDouble(sizeLine.split(" ")[1]),
-					Double.parseDouble(sizeLine.split(" ")[2]),
-					Double.parseDouble(sizeLine.split(" ")[3])
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3])
 					);
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut diffuse : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut diffuse : " + parsedLine + "\n" + e);
 		}
 	}
-	private void setSpecular(String sizeLine) {
+	private void setSpecular(String parsedLine) {
 		try {
 			this.lastSpecular = new Color(
-					Double.parseDouble(sizeLine.split(" ")[1]),
-					Double.parseDouble(sizeLine.split(" ")[2]),
-					Double.parseDouble(sizeLine.split(" ")[3])
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3])
 					);
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut specular : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut specular : " + parsedLine + "\n" + e);
 		}
 	}
 	
+	private void setShininess(String parsedLine) {
+		try {
+			this.lastShininess = new Color(
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3])
+					);
+		}catch(Exception e) {
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut shininess : " + parsedLine + "\n" + e);
+		}
+	}
 	
 
 	
-	private void setMaxverts(String sizeLine) {
+	private void setMaxverts(String parsedLine) {
 		try {
-			this.maxverts = Integer.parseInt(sizeLine.split(" ")[1]);
+			this.maxverts = Integer.parseInt(parsedLine.split(" ")[1]);
 			this.vertexes = new Point[this.maxverts];
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut maxverts : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut maxverts : " + parsedLine + "\n" + e);
 		}
 	}
 	
 	
-	private void addVertex(String sizeLine) {
+	private void addVertex(String parsedLine) {
 		try {
 			if(this.maxverts < 0) {
 				throw new IllegalArgumentException("Il est obligatoire de déclarer maxverts avant le/les vertex.");
@@ -265,66 +281,66 @@ public class SceneFileParser {
 			}
 			if(vertIndex < this.maxverts) {
 				Point position = new Point(
-						Double.parseDouble(sizeLine.split(" ")[1]),
-						Double.parseDouble(sizeLine.split(" ")[2]),
-						Double.parseDouble(sizeLine.split(" ")[3])
+						Double.parseDouble(parsedLine.split(" ")[1]),
+						Double.parseDouble(parsedLine.split(" ")[2]),
+						Double.parseDouble(parsedLine.split(" ")[3])
 						);
 				this.vertexes[vertIndex] = position;
 			}
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut vertex : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut vertex : " + parsedLine + "\n" + e);
 		}
 	}
 	
 	
-	private void setDirectionalLight(String sizeLine) {
+	private void setDirectionalLight(String parsedLine) {
 		try {
 			
 			Vector direction = new Vector(
-					Double.parseDouble(sizeLine.split(" ")[1]),
-					Double.parseDouble(sizeLine.split(" ")[2]),
-					Double.parseDouble(sizeLine.split(" ")[3]));
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3]));
 			Color couleur = new Color(
-					Double.parseDouble(sizeLine.split(" ")[4]),
-					Double.parseDouble(sizeLine.split(" ")[5]),
-					Double.parseDouble(sizeLine.split(" ")[6]));
+					Double.parseDouble(parsedLine.split(" ")[4]),
+					Double.parseDouble(parsedLine.split(" ")[5]),
+					Double.parseDouble(parsedLine.split(" ")[6]));
 			
 			this.lights.add( new DirectionalLight( direction, couleur));
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut directional : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut directional : " + parsedLine + "\n" + e);
 		}
 	}
 	
-	private void setPointLight(String sizeLine) {
+	private void setPointLight(String parsedLine) {
 		try {
 			
 			Point origin = new Point(
-					Double.parseDouble(sizeLine.split(" ")[1]),
-					Double.parseDouble(sizeLine.split(" ")[2]),
-					Double.parseDouble(sizeLine.split(" ")[3]));
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3]));
 			Color couleur = new Color(
-					Double.parseDouble(sizeLine.split(" ")[4]),
-					Double.parseDouble(sizeLine.split(" ")[5]),
-					Double.parseDouble(sizeLine.split(" ")[6]));
+					Double.parseDouble(parsedLine.split(" ")[4]),
+					Double.parseDouble(parsedLine.split(" ")[5]),
+					Double.parseDouble(parsedLine.split(" ")[6]));
 			
 			this.lights.add( new PointLight( origin, couleur));
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut point : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut point : " + parsedLine + "\n" + e);
 		}
 	}
 	
 	
 	
-	private void addTri(String sizeLine) {
+	private void addTri(String parsedLine) {
 		try {
 			
 			if (this.vertexes == null) {
 				throw new NullPointerException();
 			}
 			
-			int aIndex = Integer.parseInt(sizeLine.split(" ")[1]);
-			int bIndex = Integer.parseInt(sizeLine.split(" ")[2]);
-			int cIndex = Integer.parseInt(sizeLine.split(" ")[3]);
+			int aIndex = Integer.parseInt(parsedLine.split(" ")[1]);
+			int bIndex = Integer.parseInt(parsedLine.split(" ")[2]);
+			int cIndex = Integer.parseInt(parsedLine.split(" ")[3]);
 			
 			if (this.maxverts < 0) {
 				throw new IllegalArgumentException("[!] La valeur de maxverts doit être définie avant d'utiliser/déclarer des vertex");
@@ -346,20 +362,20 @@ public class SceneFileParser {
 			}
 			this.shapes.add(new Triangle(a, b, c, specular, diffuse));
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + parsedLine + "\n" + e);
 		}
 	}
 
 	
-	private void addSphere(String sizeLine) {
+	private void addSphere(String parsedLine) {
 		try {
 			
 			Point center = new Point(
-					Double.parseDouble(sizeLine.split(" ")[1]),
-					Double.parseDouble(sizeLine.split(" ")[2]),
-					Double.parseDouble(sizeLine.split(" ")[3])
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3])
 					);
-			double radius = Double.parseDouble(sizeLine.split(" ")[4]);
+			double radius = Double.parseDouble(parsedLine.split(" ")[4]);
 			
 			
 			Color specular = new Color(this.lastSpecular);
@@ -372,24 +388,24 @@ public class SceneFileParser {
 			}
 			this.shapes.add(new Sphere(center, radius, specular, diffuse));
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut sphere : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut sphere : " + parsedLine + "\n" + e);
 		}
 	}
 	
 	
 	
-	private void addPlane(String sizeLine) {
+	private void addPlane(String parsedLine) {
 		try {
 			
 			Point position = new Point(
-					Double.parseDouble(sizeLine.split(" ")[1]),
-					Double.parseDouble(sizeLine.split(" ")[2]),
-					Double.parseDouble(sizeLine.split(" ")[3])
+					Double.parseDouble(parsedLine.split(" ")[1]),
+					Double.parseDouble(parsedLine.split(" ")[2]),
+					Double.parseDouble(parsedLine.split(" ")[3])
 					);
 			Vector normale = new Vector(
-					Double.parseDouble(sizeLine.split(" ")[4]),
-					Double.parseDouble(sizeLine.split(" ")[5]),
-					Double.parseDouble(sizeLine.split(" ")[6])
+					Double.parseDouble(parsedLine.split(" ")[4]),
+					Double.parseDouble(parsedLine.split(" ")[5]),
+					Double.parseDouble(parsedLine.split(" ")[6])
 					);
 			
 			Color specular = new Color(this.lastSpecular);
@@ -402,7 +418,7 @@ public class SceneFileParser {
 			}
 			this.shapes.add(new Plane(position, normale, specular, diffuse));
 		}catch(Exception e) {
-			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + sizeLine + "\n" + e);
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + parsedLine + "\n" + e);
 		}
 	}
 	
