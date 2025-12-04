@@ -96,16 +96,7 @@ public class Scene {
 			}
 		}
 		
-		if (closestIntersection.isPresent()) {
-			Color couleurPoint = new Color(this.ambient);
-			for(int j=0; j<this.lights.size(); j++) {
-				if (! closestIntersection.get().isShadowed(this.lights.get(j), this))
-					couleurPoint = couleurPoint.add(closestIntersection.get().computeDiffusionLambert(this.lights.get(j)));
-				
-			}
-			closestIntersection.get().setColor(couleurPoint);
-			
-		}
+		
 		return closestIntersection;
 	}
 	

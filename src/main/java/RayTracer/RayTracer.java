@@ -30,7 +30,16 @@ public class RayTracer {
 		
 		Optional<Intersection> p = scene.findClosestIntersection(ray);
 		if( p.isPresent()) {
+			
+			Color couleurPoint = new Color(this.scene.getAmbient());
+			for(int l=0; l<this.scene.getLights().size(); l++) {
+				if (! p.get().isShadowed(this.scene.getLights().get(l), this.scene)) {
+					couleurPoint = couleurPoint.add(p.get().computeDiffusionLambert(this.scene.getLights().get(l)));					
+				}				
+			}
+			p.get().setColor(couleurPoint);
 			return p.get().getColor();
+			
 			//return scene.getAmbient();
 		}
 		else {
