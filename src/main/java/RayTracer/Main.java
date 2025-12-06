@@ -20,7 +20,7 @@ public class Main {
 		String GIT_ROOT_DIR = System.getProperty("user.dir");
 		String SCENES = GIT_ROOT_DIR + "/TestScenes";					// Répertoire global des scènes de test
 		String resultImagesDir = GIT_ROOT_DIR + "/ResultScenesImages";	// Répertoire où placer les nouvelles images générées
-		String[] sceneDirs = { "/jalon2", "/jalon3", "/jalon4" };	// Répertoires de scènes à traiter
+		String[] sceneDirs = { /*"/jalon2", "/jalon3",*/ "/jalon4", "/jalon5" };	// Répertoires de scènes à traiter
 		
 		
 		

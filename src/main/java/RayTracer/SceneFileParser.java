@@ -40,7 +40,7 @@ public class SceneFileParser {
 	
 	private Color lastDiffuse = new Color();	// vont changer pour chaque Shape
 	private Color lastSpecular = new Color();	
-	private Color lastShininess = new Color();
+	private Double lastShininess=0d;
 	
 	private int maxverts = -1;
 	
@@ -248,11 +248,7 @@ public class SceneFileParser {
 	
 	private void setShininess(String parsedLine) {
 		try {
-			this.lastShininess = new Color(
-					Double.parseDouble(parsedLine.split(" ")[1]),
-					Double.parseDouble(parsedLine.split(" ")[2]),
-					Double.parseDouble(parsedLine.split(" ")[3])
-					);
+			this.lastShininess = Double.parseDouble(parsedLine.split(" ")[1]);
 		}catch(Exception e) {
 			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut shininess : " + parsedLine + "\n" + e);
 		}
@@ -360,7 +356,7 @@ public class SceneFileParser {
 					throw new IllegalArgumentException("[!] Erreur : les composantes de la somme ambient+diffuse ne doit pas excéder 1.");
 				}
 			}
-			this.shapes.add(new Triangle(a, b, c, specular, diffuse));
+			this.shapes.add(new Triangle(a, b, c, specular, diffuse, this.lastShininess));
 		}catch(Exception e) {
 			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + parsedLine + "\n" + e);
 		}
@@ -386,7 +382,7 @@ public class SceneFileParser {
 					throw new IllegalArgumentException("[!] Erreur : les composantes de la somme ambient+diffuse ne doit pas excéder 1.");
 				}
 			}
-			this.shapes.add(new Sphere(center, radius, specular, diffuse));
+			this.shapes.add(new Sphere(center, radius, specular, diffuse, this.lastShininess));
 		}catch(Exception e) {
 			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut sphere : " + parsedLine + "\n" + e);
 		}
@@ -416,7 +412,7 @@ public class SceneFileParser {
 					throw new IllegalArgumentException("[!] Erreur : les composantes de la somme ambient+diffuse ne doit pas excéder 1.");
 				}
 			}
-			this.shapes.add(new Plane(position, normale, specular, diffuse));
+			this.shapes.add(new Plane(position, normale, specular, diffuse, this.lastShininess));
 		}catch(Exception e) {
 			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + parsedLine + "\n" + e);
 		}

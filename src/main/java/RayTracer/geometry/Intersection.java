@@ -37,6 +37,10 @@ public class Intersection {
     }
 	
 	
+	public Point getPosition() {
+		return position;
+	}
+
 	public Color computeDiffusionLambert(Light light) {
 		if (light instanceof DirectionalLight dirLight) {
 			return computeDiffusionLambert(dirLight);
@@ -63,6 +67,36 @@ public class Intersection {
 	
 	
 	
+	public Color computeBlinnPhong(Light light, Vector eyeDir) {
+		if (light instanceof DirectionalLight dirLight) {
+			return computeBlinnPhong(dirLight, eyeDir);
+		}
+		else if (light instanceof PointLight pointLight) {
+			return computeBlinnPhong(pointLight, eyeDir);
+		}
+		return new Color();
+	}
+	
+	private Color computeBlinnPhong(DirectionalLight light, Vector eyeDir) {
+		Vector lightDir = getDirectionToLight(light).multByScalar(-1d);
+		Vector h = lightDir.add(eyeDir).normalisation();
+		return this.shape.getSpecular()
+				.schurProduct(light.getColor())
+				.multiply(Math.pow(Math.max(0d, h.produitScalaire(this.normale)), this.shape.getShininess()));
+	}
+	private Color computeBlinnPhong(PointLight light, Vector eyeDir) {
+		Vector lightDir = getDirectionToLight(light);
+		Vector h = lightDir.add(eyeDir).normalisation();
+		return this.shape.getSpecular()
+				.schurProduct(light.getColor())
+				.multiply(Math.pow(	Math.max(0d, h.produitScalaire(this.normale)), this.shape.getShininess()	));
+	}
+	
+	
+	
+	
+	
+	
 	public boolean isShadowed(Light light, Scene scene) {
 		if (light instanceof DirectionalLight dirLight) {
 			return isShadowed(dirLight, scene);
@@ -74,15 +108,15 @@ public class Intersection {
 	}
 	
 	private boolean isShadowed(DirectionalLight light,Scene scene) {
-		Vector directionToLight = light.getDirection().normalisation().multByScalar(-1);
-		Ray shadowRay = new Ray(directionToLight.multByScalar(1e-4).add(this.position), directionToLight);
+		Vector directionToLight = light.getDirection().normalisation();
+		Ray shadowRay = new Ray(directionToLight.multByScalar(1e-4d).add(this.position), directionToLight);
 		Optional<Intersection> shadowSource = scene.findClosestIntersection(shadowRay);		
 		return shadowSource.isPresent();		
 	}
 	
 	private boolean isShadowed(PointLight light, Scene scene) {
 		Vector directionToLight = light.getOrigin().sub(this.position).normalisation();
-		Ray shadowRay = new Ray(directionToLight.multByScalar(1e-4).add(this.position), directionToLight);
+		Ray shadowRay = new Ray(directionToLight.multByScalar(1e-4d).add(this.position), directionToLight);
 		Optional<Intersection> shadowSource = scene.findClosestIntersection(shadowRay);
 		return shadowSource.isPresent();
 	}
@@ -91,7 +125,15 @@ public class Intersection {
 	
 	
 	
-	
+	private Vector getDirectionToLight(Light light) {
+	    if (light instanceof DirectionalLight dir) {
+	        return dir.getDirection().multByScalar(-1d).normalisation();
+	    }
+	    if (light instanceof PointLight point) {
+	        return point.getOrigin().sub(this.position).normalisation();
+	    }
+	    return new Vector(0,0,0);
+	}
 	
 	
 }

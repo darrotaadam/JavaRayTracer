@@ -15,8 +15,8 @@ import javax.imageio.ImageIO;
 public class Main{
 	
 	public static void main(String[] args) {
-		if(args.length != 3){    
-			System.out.println("[!] Paramètres: fichier1.png fichier2.png fichier_export.png");
+		if(args.length != 2){    
+			System.out.println("[!] Paramètres: fichier1.png fichier2.png ");
             throw new IllegalArgumentException("Incorrect count of parameters, received "+ args.length);
         }
 		
@@ -38,7 +38,7 @@ public class Main{
         
         BufferedImage imageDifferentielle = comparateur.imageDifferencielle(img1, img2);
         
-        String savedImage = saveImage(imageDifferentielle, args[2]);
+        String savedImage = saveImage(imageDifferentielle, Paths.get(System.getProperty("user.dir")+"/imageDiff.png").toString());
         
         if (savedImage != null) System.out.println("Image différentielle créée à " + savedImage);
 	}

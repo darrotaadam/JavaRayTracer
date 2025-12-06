@@ -13,6 +13,7 @@ public class Triangle implements Shape{
 
 	private Color specular;
 	private Color diffuse;
+	private Double shininess;
 	
 	
 	public Color getSpecular() {
@@ -21,13 +22,17 @@ public class Triangle implements Shape{
 	public Color getDiffuse() {
 		return diffuse;
 	}
+	public Double getShininess() {
+		return shininess;
+	}
 	
-	public Triangle(Point a, Point b, Point c, Color specular, Color diffuse) {
+	public Triangle(Point a, Point b, Point c, Color specular, Color diffuse, Double shininess) {
 		this.a = a;
 		this.b = b;
 		this.c = c;
 		this.specular = specular;
 		this.diffuse = diffuse;
+		this.shininess = shininess;
 	}
 	
 	

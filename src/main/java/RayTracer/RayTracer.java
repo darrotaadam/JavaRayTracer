@@ -26,21 +26,21 @@ public class RayTracer {
 		//calculate d ray
 		Vector d = computeD(i, j, pixel);
 		Ray ray = new Ray(scene.getCamera().getPosition(), d);
-		//find intersection p
 		
+		//find intersection p
 		Optional<Intersection> p = scene.findClosestIntersection(ray);
 		if( p.isPresent()) {
+			Vector eyeDir = this.scene.getCamera().getPosition().sub(p.get().getPosition()).normalisation();
 			
 			Color couleurPoint = new Color(this.scene.getAmbient());
 			for(int l=0; l<this.scene.getLights().size(); l++) {
 				if (! p.get().isShadowed(this.scene.getLights().get(l), this.scene)) {
-					couleurPoint = couleurPoint.add(p.get().computeDiffusionLambert(this.scene.getLights().get(l)));					
+					couleurPoint = couleurPoint.add(p.get().computeDiffusionLambert(this.scene.getLights().get(l)));	
+					couleurPoint = couleurPoint.add(p.get().computeBlinnPhong(this.scene.getLights().get(l), eyeDir));
 				}				
 			}
 			p.get().setColor(couleurPoint);
 			return p.get().getColor();
-			
-			//return scene.getAmbient();
 		}
 		else {
 			return new Color();

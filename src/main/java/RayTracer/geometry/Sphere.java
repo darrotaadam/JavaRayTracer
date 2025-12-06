@@ -11,7 +11,7 @@ public class Sphere implements Shape{
 	private double radius;
 	private Color specular;
 	private Color diffuse;
-	
+	private Double shininess;
 	
 	public Color getSpecular() {
 		return specular;
@@ -19,19 +19,23 @@ public class Sphere implements Shape{
 	public Color getDiffuse() {
 		return diffuse;
 	}
+	public Double getShininess() {
+		return shininess;
+	}
 	
-	
-	public Sphere(double x, double y, double z, double radius, Color specular, Color diffuse) {
+	public Sphere(double x, double y, double z, double radius, Color specular, Color diffuse, Double shininess) {
 		this.center = new Point(x, y, z);
 		this.radius= radius;
 		this.specular = specular;
 		this.diffuse = diffuse;
+		this.shininess = shininess;
 	}
-	public Sphere(Point center, double radius, Color specular, Color diffuse) {
+	public Sphere(Point center, double radius, Color specular, Color diffuse, Double shininess) {
 		this.center = center;
 		this.radius= radius;
 		this.specular = specular;
 		this.diffuse = diffuse;
+		this.shininess = shininess;
 	}
 	
 	

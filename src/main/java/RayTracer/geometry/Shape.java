@@ -11,5 +11,5 @@ public interface Shape {
 	
 	Color getDiffuse();
 	Color getSpecular();
-
+	Double getShininess();
 }

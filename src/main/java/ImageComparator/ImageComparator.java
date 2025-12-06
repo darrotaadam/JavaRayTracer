@@ -48,6 +48,16 @@ public class ImageComparator {
 				imageDifferentielle.setRGB(x, y, image1.getRGB(x, y)-image2.getRGB(x, y));
 			}
 		}
+		/*
+		for (int x=0; x<minWidth ; x++) {
+			for (int y=0; y<minHeight ; y++) {
+				if(Math.abs(image1.getRGB(x, y)-image2.getRGB(x, y)) > 0d) {
+					imageDifferentielle.setRGB(x, y, 255);
+				}else {
+					imageDifferentielle.setRGB(x, y, 0);
+				}
+			}
+		}*/
 		
 		
 		// étend aux dimensions de l'image la plus grande
