@@ -20,7 +20,7 @@ public class Main {
 		String GIT_ROOT_DIR = System.getProperty("user.dir");
 		String SCENES = GIT_ROOT_DIR + "/TestScenes";					// Répertoire global des scènes de test
 		String resultImagesDir = GIT_ROOT_DIR + "/ResultScenesImages";	// Répertoire où placer les nouvelles images générées
-		String[] sceneDirs = { /*"/jalon2", "/jalon3",*/ "/jalon4", "/jalon5" };	// Répertoires de scènes à traiter
+		String[] sceneDirs = { /*"/jalon2", */"/jalon3", "/jalon4", "/jalon5", /*"/final" */};	// Répertoires de scènes à traiter
 		
 		
 		
@@ -59,7 +59,7 @@ public class Main {
 					scene = new Scene(Paths.get(SCENES + sceneDirs[i] + "/" + sceneFiles.get(j)).toString() );
 					renderer = new Renderer(scene);
 					resultImage = renderer.render();
-					resultImageName = Paths.get( resultImagesDir + sceneDirs[i] + "/" + sceneFiles.get(j).substring(0,sceneFiles.get(j).indexOf(".")) +".png").toString() ;
+					resultImageName = Paths.get( resultImagesDir + sceneDirs[i] + "/" + scene.getOutput()).toString() ;
 					saveImage(resultImage, resultImageName);
 					System.out.println("[*]Image sauvegardée !  -> " + resultImageName);
 				}catch(Exception e) {
@@ -72,6 +72,7 @@ public class Main {
 			System.out.println("----------------------");
 		}
 		
+		System.out.printf("###########/n[*] Fin/n###########");
 		
 	}
 	
