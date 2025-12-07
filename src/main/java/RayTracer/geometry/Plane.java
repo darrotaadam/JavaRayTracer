@@ -34,11 +34,31 @@ public class Plane implements Shape{
 		this.shininess = shininess;
 	}
 
+
+	@Override
 	public Optional<Intersection> intersect(Ray rayon) {
-		return Optional.empty() ;
+		Double top = this.position.sub(rayon.getOrigin()).produitScalaire(this.normale); 
+		Double bottom = rayon.getDirection().produitScalaire(this.normale);
+		
+		if (Math.abs(bottom) < 1e-6) {
+			return Optional.empty();
+		}
+		
+		Double t = top/bottom;
+		
+		if(t < 1e-6) {	// est soit au niveau de la caméra, soit derrière
+			return Optional.empty();
+		}
+		
+		position = rayon.getDirection().multByScalar(t).add(rayon.getOrigin());
+
+		return Optional.of(new Intersection(t, this.position, this.normale, this));
+		
 	}
 
-
+	
+	
+	
 	
 	
 }
