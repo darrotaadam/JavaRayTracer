@@ -1,4 +1,4 @@
-package RayTracer;
+package RayTracer.raytracer;
 
 import java.util.Optional;
 
@@ -7,7 +7,8 @@ import RayTracer.geometry.Orthonormal;
 import RayTracer.geometry.Vector;
 import RayTracer.imaging.Color;
 import RayTracer.imaging.Pixel;
-import RayTracer.raytracer.Ray;
+import RayTracer.imaging.Scene;
+
 
 public class RayTracer {
 
@@ -37,6 +38,7 @@ public class RayTracer {
 				if (! p.get().isShadowed(this.scene.getLights().get(l), this.scene)) {
 					couleurPoint = couleurPoint.add(p.get().computeDiffusionLambert(this.scene.getLights().get(l)));	
 					couleurPoint = couleurPoint.add(p.get().computeBlinnPhong(this.scene.getLights().get(l), eyeDir));
+					couleurPoint = couleurPoint.add(p.get().computeCouleurReflet(eyeDir, this.scene, this.scene.getMaxDepth()));
 				}				
 			}
 			p.get().setColor(couleurPoint);

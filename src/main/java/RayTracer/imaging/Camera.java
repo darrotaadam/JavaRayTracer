@@ -1,4 +1,4 @@
-package RayTracer;
+package RayTracer.imaging;
 
 import RayTracer.geometry.Point;
 import RayTracer.geometry.Vector;

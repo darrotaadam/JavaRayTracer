@@ -1,4 +1,4 @@
-package RayTracer;
+package RayTracer.imaging;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class Scene {
 	private Color ambient ;
 	private List<Light> lights = new ArrayList<>();
 	private List<Shape> shapes = new ArrayList<>();
-
+	private int maxdepth;
 	
 	
 	public Scene(String fileName) {
@@ -52,7 +52,10 @@ public class Scene {
 	public List<Shape> getShapes() {
 		return shapes;
 	}
-
+	public int getMaxDepth() {
+		return maxdepth;
+	}
+	
 
 	public void printSummary() {
 		System.out.println("[*] Scene id " + this.hashCode());
@@ -70,7 +73,7 @@ public class Scene {
 			this.ambient = parser.getAmbient();
 			this.lights = parser.getLights();
 			this.shapes = parser.getShapes();
-			
+			this.maxdepth = parser.getMaxDepth();
 		}catch(IOException e) {
 			System.out.println(e);
 			System.out.println("[x] Exiting.");
@@ -95,8 +98,6 @@ public class Scene {
 				}
 			}
 		}
-		
-		
 		return closestIntersection;
 	}
 	

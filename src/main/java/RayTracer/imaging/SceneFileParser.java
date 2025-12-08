@@ -1,4 +1,4 @@
-package RayTracer;
+package RayTracer.imaging;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -44,7 +44,7 @@ public class SceneFileParser {
 	
 	private int maxverts = -1;
 	
-	
+	private int maxdepth;
 	
 	
 	
@@ -83,7 +83,10 @@ public class SceneFileParser {
 	public String getOutput() {
 		return output;
 	}
-
+	
+	public int getMaxDepth() {
+		return maxdepth;
+	}
 
 
 	private ArrayList<String> openFile(String fileName) throws IOException {
@@ -156,6 +159,9 @@ public class SceneFileParser {
 					break;
 				case "plane":
 					addPlane(currentLine);
+					break;
+				case "maxdepth":
+					setMaxDepth(currentLine);
 					break;
 					
 			}	
@@ -415,6 +421,15 @@ public class SceneFileParser {
 			this.shapes.add(new Plane(position, normale, specular, diffuse, this.lastShininess));
 		}catch(Exception e) {
 			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut tri : " + parsedLine + "\n" + e);
+		}
+	}
+	
+	
+	private void setMaxDepth(String parsedLine) {
+		try {
+			this.maxdepth = Integer.parseInt(parsedLine.split(" ")[1]);
+		}catch(Exception e) {
+			throw new IllegalArgumentException("[!] Erreur lors de la lecture de l'attribut maxdepth : " + parsedLine + "\n" + e);
 		}
 	}
 	

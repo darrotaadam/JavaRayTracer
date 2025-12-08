@@ -1,4 +1,4 @@
-package RayTracer;
+package RayTracer.raytracer;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -8,8 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
-
+import RayTracer.raytracer.RayTracer;
+import RayTracer.imaging.Scene;
 import RayTracer.imaging.Color;
+
 
 public class Renderer {
 
@@ -44,7 +46,7 @@ public class Renderer {
 			}
 			if(i%20 == 0) {
 				current = (long) i * scene.getHeight();
-		        progress = (100.0 * current) / totalPixels;
+		        progress = (int)(100.0 * current) / totalPixels;
 		        System.out.print("\rProgress on " + sceneName + " : " + progress + "%" + "    ");
 		        System.out.flush();
 			}
