@@ -1,6 +1,6 @@
 <h1><strong>RayTracer</strong> Java pour le cours de Conception Orientée Objet<h1>
 <h2>Usage</h2>
-<h3>java -jar raytracer.jar [options | scene]<h3>
+<h3>$ java -jar raytracer.jar [options | scene]<h3>
 
 <h3>Scene</h3>
 <p>Chemin relatif du fichier de scène à utiliser</p>
