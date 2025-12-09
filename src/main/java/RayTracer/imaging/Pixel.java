@@ -1,5 +1,9 @@
 package RayTracer.imaging;
 
+/**
+ * Représente un pixel, de largeur width et de hauteur height
+ */
+
 public class Pixel {
 	private double width;
 	private double height;

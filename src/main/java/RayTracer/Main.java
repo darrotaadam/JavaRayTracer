@@ -211,12 +211,12 @@ public class Main {
 		System.out.println("Image 1: " + image1.getFileName().toString() + " (" + img1.getWidth() + "x" + img1.getHeight() + ")");
         System.out.println("Image 2: " + image1.getFileName().toString() + " (" + img2.getWidth() + "x" + img2.getHeight() + ")");
 		
-		ImageComparator comparateur = new ImageComparator();
-		int differentPixels = comparateur.getDifferentPixels(img1, img2);
+	
+		int differentPixels = ImageComparator.getDifferentPixels(img1, img2);
         
         System.out.println("Nombre de pixels différents : " + differentPixels);
 		
-        BufferedImage imageDifferentielle = comparateur.imageDifferencielle(img1, img2);
+        BufferedImage imageDifferentielle = ImageComparator.imageDifferencielle(img1, img2);
         
         String savedImage = saveImage(imageDifferentielle, Paths.get(System.getProperty("user.dir")+"/imageDiff.png").toString());
        

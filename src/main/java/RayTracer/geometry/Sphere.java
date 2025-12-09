@@ -5,6 +5,11 @@ import java.util.Optional;
 import RayTracer.imaging.Color;
 import RayTracer.raytracer.Ray;
 
+
+/**
+ * Représente une sphère dans l'espace.
+ * Est une Shape.
+ */
 public class Sphere implements Shape{
 
 	private Point center;
@@ -23,6 +28,16 @@ public class Sphere implements Shape{
 		return shininess;
 	}
 	
+	/**
+	 * Constructeur de la Sphere, utilisant les coordonées x,y,z pour le centre
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param radius
+	 * @param specular
+	 * @param diffuse
+	 * @param shininess
+	 */
 	public Sphere(double x, double y, double z, double radius, Color specular, Color diffuse, Double shininess) {
 		this.center = new Point(x, y, z);
 		this.radius= radius;
@@ -30,6 +45,14 @@ public class Sphere implements Shape{
 		this.diffuse = diffuse;
 		this.shininess = shininess;
 	}
+	/**
+	 * Constructeur de la Sphere, utilisant un Point pour le centre
+	 * @param center
+	 * @param radius
+	 * @param specular
+	 * @param diffuse
+	 * @param shininess
+	 */
 	public Sphere(Point center, double radius, Color specular, Color diffuse, Double shininess) {
 		this.center = center;
 		this.radius= radius;
@@ -39,7 +62,10 @@ public class Sphere implements Shape{
 	}
 	
 	
-	
+	/**
+	 * Cherche une intersection avec le rayon passé en paramètre
+	 * @param rayon	Rayon pour lequel on cherche une intersection sur la sphère
+	 */
 	@Override
 	public Optional<Intersection> intersect(Ray rayon) {
 		double a = rayon.getDirection().produitScalaire(rayon.getDirection());

@@ -3,6 +3,9 @@ package RayTracer.raytracer;
 import RayTracer.geometry.Vector;
 import RayTracer.imaging.Color;
 
+/**
+ * Class représentant une lumière directionnelle formée d'un Vector direction et d'une Color couleur
+ */
 public class DirectionalLight extends AbstractLight{
 	
 	private Vector direction;

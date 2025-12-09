@@ -19,7 +19,11 @@ import RayTracer.raytracer.DirectionalLight;
 import RayTracer.raytracer.Light;
 import RayTracer.raytracer.PointLight;
 
-
+/**
+ * Parseur pour les fichiers de scène.
+ * Instanciée avec le nom du fichier.
+ * Le contenu de la classe (attributs) est défini pendant le parsing.
+ */
 public class SceneFileParser {
 
 	private ArrayList<String> fileContent;
@@ -104,7 +108,9 @@ public class SceneFileParser {
 	
 	
 	
-	
+	/**
+	 * Parsing du fichier en important les patterns reconnus dans le swtich/case
+	 */
 	private void extractAll() {
 		String currentLine;
 		for(int i=0 ; i < this.fileContent.size(); i++) {

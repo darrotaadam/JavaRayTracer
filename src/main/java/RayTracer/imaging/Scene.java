@@ -12,6 +12,11 @@ import RayTracer.raytracer.Ray;
 import RayTracer.geometry.Intersection;
 import RayTracer.geometry.Shape;
 
+
+/**
+ * Représente une scène avec les attributs correpondants, ainsi que le contenu comportant les lumières, les formes géométriques et la caméra.
+ */
+
 public class Scene {
 	
 	private int width;
@@ -23,7 +28,10 @@ public class Scene {
 	private List<Shape> shapes = new ArrayList<>();
 	private int maxdepth;
 	
-	
+	/**
+	 * Crée la scène à partir du fichier de scène donné
+	 * @param fileName
+	 */
 	public Scene(String fileName) {
 		importSceneFile(fileName);	// va définir les valeurs des attributs
 		
@@ -62,7 +70,10 @@ public class Scene {
 		System.out.println("[*] Size " + this.getWidth() + "x" + this.getHeight());
 	}
 	
-
+	/**
+	 * Utilise le Parser pour récupérer tous les atributs depuis le fichier de scène
+	 * @param fileName
+	 */
 	private void importSceneFile(String fileName) {
 		try {
 			SceneFileParser parser = new SceneFileParser(fileName);
@@ -87,7 +98,11 @@ public class Scene {
 
 	
 	
-	
+	/**
+	 * Cherche l'intersection la plus proche entre le rayon et une Shape présente dans la scène.
+	 * @param rayon Ray
+	 * @return intersection? Optional intersection
+	 */
 	public Optional<Intersection> findClosestIntersection(Ray rayon){
 		Optional<Intersection> closestIntersection = Optional.empty();
 		for(int i=0; i<this.shapes.size(); i++) {

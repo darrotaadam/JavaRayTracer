@@ -3,6 +3,11 @@ package RayTracer.imaging;
 import RayTracer.geometry.Point;
 import RayTracer.geometry.Vector;
 
+
+/**
+ * Représente un point de vue, un oeil, une caméra.
+ */
+
 public class Camera {
 	private Point position;
 	private Point looksAt;
@@ -12,6 +17,13 @@ public class Camera {
 	
 	public Camera() {
 	}
+	/**
+	 * Constructeur de la Camera
+	 * @param position	Point désignant la position dans l'espace de la Camera
+	 * @param looksAt	Point vers lequel regarde la caméra
+	 * @param upDirection	Vector désignant la direction vers le haut de l'oeil
+	 * @param fov	Double désignant le champ de vision en degrés
+	 */
 	public Camera(Point position, Point looksAt, Vector upDirection, double fov) {
 		this.position = position;
 		this.looksAt = looksAt;

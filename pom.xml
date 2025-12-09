@@ -103,6 +103,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-maven-plugin</artifactId>
 		</plugin>
+		<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.0</version> <!-- Use the latest version -->
+        <configuration>
+          <!-- Basic configuration options -->
+          <doctitle>My API for ${project.name} ${project.version}</doctitle>
+          <windowtitle>My API for ${project.name} ${project.version}</windowtitle>
+        </configuration>
+      </plugin>
       </plugins>
     </pluginManagement>
   </build>

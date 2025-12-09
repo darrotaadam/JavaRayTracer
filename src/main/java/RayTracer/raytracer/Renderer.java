@@ -13,17 +13,26 @@ import RayTracer.imaging.Scene;
 import RayTracer.imaging.Color;
 
 
+/**
+ * Composant dont le rôle est de générer l'image pixel par pixel en faisant appel au RayTracer
+ */
 public class Renderer {
 
 	private Scene scene;
 	
 	
-	
+	/**
+	 * Instantiation du Renderer
+	 * @param scene Scène à générer en image
+	 */
 	public Renderer(Scene scene) {
 		this.scene = scene;
 	}
 	
-	
+	/**
+	 * Boucle en largeur et hauteur servant à générer la matrice de pixels constituant l'image finale.
+	 * @return image
+	 */
 	public BufferedImage render() {
 		BufferedImage renderedImage = new BufferedImage(scene.getWidth(), scene.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
 		String sceneName = scene.getOutput();

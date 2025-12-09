@@ -5,6 +5,11 @@ import java.util.Optional;
 import RayTracer.imaging.Color;
 import RayTracer.raytracer.Ray;
 
+/**
+ * Représente un plan triangle l'espace.
+ * Est une Shape.
+ */
+
 public class Triangle implements Shape{
 	
 	private Point a;
@@ -27,6 +32,15 @@ public class Triangle implements Shape{
 		return shininess;
 	}
 	
+	/**
+	 * Constructeur du triangle. Utilise trois Point a,b,c.
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @param specular
+	 * @param diffuse
+	 * @param shininess
+	 */
 	public Triangle(Point a, Point b, Point c, Color specular, Color diffuse, Double shininess) {
 		this.a = a;
 		this.b = b;
@@ -39,7 +53,10 @@ public class Triangle implements Shape{
 	}
 	
 	
-
+	/**
+	 * Cherche une intersection avec le rayon passé en paramètre
+	 * @param rayon	Rayon pour lequel on cherche une intersection sur le triangle
+	 */
 	@Override
 	public Optional<Intersection> intersect(Ray rayon) {
 

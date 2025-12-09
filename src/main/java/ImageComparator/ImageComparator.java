@@ -2,15 +2,18 @@ package ImageComparator;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Classe ne comportant que des méthodes statiques, constituant un comparateur d'images.
+ */
 public class ImageComparator {
+    
 
 	
-	public ImageComparator() {
-		
-	}
-	
-	public int getDifferentPixels(BufferedImage image1, BufferedImage image2) {
-		
+	/**
+	 * Méthode statique qui retourne le nombre de pixels différents entre image1 et image2.
+	 * @return differentPixels
+	 */
+	public static int getDifferentPixels(BufferedImage image1, BufferedImage image2) {
 		int minHeight = min(image1.getHeight(), image2.getHeight());
 		int minWidth = min(image1.getWidth(), image2.getWidth());
 		
@@ -31,8 +34,13 @@ public class ImageComparator {
 	}
 	
 	
-	
-	public BufferedImage imageDifferencielle(BufferedImage image1, BufferedImage image2) {
+	/**
+	 * Retourne une image différencielle avec chaque pixel (x,y) correspondant à image1[x][y] - image2[x][y]
+	 * @param image1
+	 * @param image2 
+	 * @return difference
+	 */
+	public static BufferedImage imageDifferencielle(BufferedImage image1, BufferedImage image2) {
 		int minHeight = min(image1.getHeight(), image2.getHeight());
 		int minWidth = min(image1.getWidth(), image2.getWidth());
 		
@@ -48,17 +56,7 @@ public class ImageComparator {
 				imageDifferentielle.setRGB(x, y, image1.getRGB(x, y)-image2.getRGB(x, y));
 			}
 		}
-		/*
-		for (int x=0; x<minWidth ; x++) {
-			for (int y=0; y<minHeight ; y++) {
-				if(Math.abs(image1.getRGB(x, y)-image2.getRGB(x, y)) > 0d) {
-					imageDifferentielle.setRGB(x, y, 255);
-				}else {
-					imageDifferentielle.setRGB(x, y, 0);
-				}
-			}
-		}*/
-		
+
 		
 		// étend aux dimensions de l'image la plus grande
 		 for (int y = minHeight; y < maxHeight; y++) {
