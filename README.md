@@ -21,3 +21,9 @@
 <h2>Build :</h2>
 <h3>$ mvn package</h3>
 <h5>Le .jar se trouvera dans target/</h5>
+<br>
+<br>
+<h2>Images Générées</h2>
+
+![Final](final.png)
+![Final avec bonus](final_avec_bonus.png)
