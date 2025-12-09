@@ -1,4 +1,7 @@
-<h1><strong>RayTracer</strong> Java pour le cours de Conception Orientée Objet<h1>
+<h1><strong>RayTracer</strong> Java pour le cours de Conception Orientée Objet</h1>
+<h2><i>Adam Darrot - Noam Labrousse</i></h2> <!-- Slightly smaller and italicized for subtle emphasis -->
+<br>
+<br>
 <h2>Usage</h2>
 <h3>$ java -jar raytracer.jar [options | scene]<h3>
 
