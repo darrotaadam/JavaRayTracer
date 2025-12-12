@@ -12,11 +12,11 @@
 <ul>
     <li>
         <h4>--all</h4>
-        <p>Genere les images de toutes les fichiers .scene et .test présentes dans le répertoire TestScenes. Il est nécessaire de se trouver dans le répertoire racine du repo</p>
+        <p>Génère les images de tous les fichiers .scene et .test présents dans le répertoire TestScenes. Il est nécessaire de se trouver dans le répertoire racine du repo</p>
     </li>
     <li>
         <h4>--compare image1 image2</h4>
-        <p>Compare les deux images, donne le nombre de pixels différents et créee une image différencielle imageDiff.png</p>
+        <p>Compare les deux images, donne le nombre de pixels différents et crée une image différentielle imageDiff.png</p>
     </li>
 </ul>
 <br>
